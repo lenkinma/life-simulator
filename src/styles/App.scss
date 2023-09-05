@@ -1,0 +1,17 @@
+@import './reset';
+@import './mixins';
+@import './vars';
+@import './base';
+
+.App {
+  /*text-align: center;*/
+}
+
+/*body {*/
+/*  background-color: green;*/
+/*}*/
+
+canvas {
+    background-color: black;
+    border-radius: 15px;
+}
