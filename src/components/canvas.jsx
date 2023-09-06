@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-function Canvas({count, particleSize, particleSpeed, forceOfGravity}) {
+function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning}) {
 	const canvasRef = useRef(null);
 	// const [particles, setParticles] = useState([]);
 
@@ -39,7 +39,7 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity}) {
 				let dx = a.x - b.x;
 				let dy = a.y - b.y
 				let d = Math.sqrt(dx*dx + dy*dy);
-				if (d > 0 && d < forceOfGravity) {
+				if (d > 0 && d < forceOfGravity*20) {
 					let F = g * 1 / d;
 					fx += (F * dx);
 					fy += (F * dy)
@@ -51,8 +51,8 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity}) {
 			// if (a.x > 500) {a.x = 497;}
 			// if (a.y < 0) {a.y = 0}
 			// if (a.y > 500) {a.y = 497;}
-			a.vx = (a.vx + fx)*particleSpeed;
-			a.vy = (a.vy + fy)*particleSpeed;
+			a.vx = (a.vx + fx)*(particleSpeed/10);
+			a.vy = (a.vy + fy)*(particleSpeed/10);
 			a.x += a.vx;
 			a.y += a.vy;
 
@@ -62,6 +62,7 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity}) {
 		const canvas = canvasRef.current;
 		const context = canvas.getContext('2d');
 		let particles = [];
+		context.clearRect(0, 0, 500, 500);
 		console.log('canvas renderer');
 
 		let count = 0;
@@ -83,7 +84,7 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity}) {
 			// rule(green, red, -0.1);
 			rule(yellow, yellow, 0.01)
 
-			context.clearRect(0, 0, 500, 500);
+			if (canvasCleaning) context.clearRect(0, 0, 500, 500);
 			for (let i = 0; i<particles.length; i++){
 				draw(context, particles[i].x, particles[i].y, particles[i].color, particleSize);
 			}
