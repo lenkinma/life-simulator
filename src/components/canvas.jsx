@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning}) {
+function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning, particles, setParticles}) {
 	const canvasRef = useRef(null);
 	// const [particles, setParticles] = useState([]);
 

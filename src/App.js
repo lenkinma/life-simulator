@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import Canvas from "./components/canvas";
 import MainSettings from "./components/mainSettings";
 import Slider from "./components/slider";
+import ParticleSettings from "./components/particleSettings";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,17 +11,23 @@ function App() {
   const [particleSpeed, setParticleSpeed] = useState(5);
   const [forceOfGravity, setForceOfGravity] = useState(4);
   const [canvasCleaning, setCanvasCleaning] = useState(true);
+  const [particles, setParticles] = useState([
+    {on: true, color: 'red', amount: 200, with1: 100, with2: 100, with3: 100},
+    {on: true, color: 'blue', amount: 200, with1: 100, with2: 100, with3: 100},
+    {on: true, color: 'green', amount: 200, with1: 100, with2: 100, with3: 100}
+  ]);
 
 
   return (
     <div className="App">
-      <button onClick={() => setCount(prev => prev + 1)}>Счетчик {count}</button>
       <Canvas
         count={count}
         particleSize={particleSize}
         particleSpeed={particleSpeed}
         forceOfGravity={forceOfGravity}
         canvasCleaning={canvasCleaning}
+        particles={particles}
+        setParticles={setParticles}
       />
       <MainSettings
         setCount={setCount}
@@ -33,7 +40,10 @@ function App() {
         canvasCleaning={canvasCleaning}
         setCanvasCleaning={setCanvasCleaning}
       />
-
+      <ParticleSettings
+        particles={particles}
+        setParticles={setParticles}
+      />
     </div>
   );
 }
