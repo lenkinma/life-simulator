@@ -11,10 +11,11 @@ function App() {
   const [particleSpeed, setParticleSpeed] = useState(5);
   const [forceOfGravity, setForceOfGravity] = useState(4);
   const [canvasCleaning, setCanvasCleaning] = useState(true);
-  const [particles, setParticles] = useState([
-    {on: true, color: 'red', amount: 200, with1: 100, with2: 100, with3: 100},
-    {on: true, color: 'blue', amount: 200, with1: 100, with2: 100, with3: 100},
-    {on: true, color: 'green', amount: 200, with1: 100, with2: 100, with3: 100}
+  const [borders, setBorders] = useState(false);
+  const [particlesRules, setParticlesRules] = useState([
+    {on: true, color: 'red', amount: 1000, withSelf: 100, with1: 100, with2: 100, with3: 100},
+    {on: false, color: 'blue', amount: 1000, withSelf: 100, with1: 100, with2: 100, with3: 100},
+    {on: false, color: 'green', amount: 1000, withSelf: 100, with1: 100, with2: 100, with3: 100}
   ]);
 
 
@@ -26,8 +27,9 @@ function App() {
         particleSpeed={particleSpeed}
         forceOfGravity={forceOfGravity}
         canvasCleaning={canvasCleaning}
-        particles={particles}
-        setParticles={setParticles}
+        borders={borders}
+        particlesRules={particlesRules}
+        setParticlesRules={setParticlesRules}
       />
       <MainSettings
         setCount={setCount}
@@ -39,10 +41,12 @@ function App() {
         setForceOfGravity={setForceOfGravity}
         canvasCleaning={canvasCleaning}
         setCanvasCleaning={setCanvasCleaning}
+        borders={borders}
+        setBorders={setBorders}
       />
       <ParticleSettings
-        particles={particles}
-        setParticles={setParticles}
+        particlesRules={particlesRules}
+        setParticlesRules={setParticlesRules}
       />
     </div>
   );

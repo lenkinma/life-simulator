@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import ReactSlider from "react-slider";
 import '../styles/App.scss';
-function Slider({min, max, setCurrentValue, currentValue, title}) {
-	// const [currentValue, setCurrentValue] = useState(1);
+function Slider({min, max, setCurrentValue, currentValue}) {
 
 	return (
-		<div className='slider-wrapper'>
-			<label id="slider-label">{title} {currentValue}</label>
+		<div>
 			<ReactSlider
 				ariaLabelledby="slider-label"
 				className="horizontal-slider"
