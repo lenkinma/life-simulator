@@ -1,8 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Slider from "./slider";
 import Accordion from "./accordion";
 
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
+import Modal from "./modal";
+
 function ParticleSettings({particlesRules, setParticlesRules}) {
+	const [color, setColor] = useColor(particlesRules[0].color);
+	const [colorPickerIsOpen, setColorPickerIsOpen] = useState(false);
+
+	useEffect(() => {
+		setParticlesRules(prev => [{...prev[0], color: color.hex}, prev[1], prev[2]])
+	}, [colorPickerIsOpen]);
+
+	useEffect(() => {
+		console.log(particlesRules);
+	}, [particlesRules]);
+
+
 	return (
 		<div className='particle-settings__wrapper'>
 			<div className='particle__wrapper'>
@@ -16,7 +32,10 @@ function ParticleSettings({particlesRules, setParticlesRules}) {
 				</div>
 				<div className='particle__main-settings-wrapper'>
 					<div className='particle__color-random-block'>
-						<div className='particle__color-icon' style={{backgroundColor: particlesRules[0].color}}></div>
+						<div onClick={() => setColorPickerIsOpen(true)}
+						     className='particle__color-icon'
+						     style={{backgroundColor: particlesRules[0].color}}>
+						</div>
 						<button className='particle__settings-btn'>Рандом</button>
 					</div>
 
@@ -43,10 +62,16 @@ function ParticleSettings({particlesRules, setParticlesRules}) {
 						</div>
 					</Accordion>
 
-
 				</div>
-
 			</div>
+			aaaa
+			{colorPickerIsOpen &&
+				<Modal >
+					<ColorPicker color={color} onChange={setColor} />
+					<button onClick={() => setColorPickerIsOpen(!colorPickerIsOpen)} className='color-picker__btn'>Выбрать</button>
+				</Modal>
+			}
+
 		</div>
 	);
 }
