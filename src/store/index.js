@@ -3,7 +3,7 @@ import particleSlice from "./particleSlice";
 
 const store = configureStore({
 	reducer: {
-		todoReducer: particleSlice,
+		particleReducer: particleSlice,
 	}
 })
 

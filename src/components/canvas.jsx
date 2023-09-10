@@ -1,14 +1,13 @@
 import React, {useEffect, useRef} from 'react';
+import {useSelector} from "react-redux";
 
-function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning, particlesRules, setParticlesRules, borders}) {
+function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning, borders}) {
 	const canvasRef = useRef(null);
-	// const [particles, setParticles] = useState([]);
-
+	const particlesRules = useSelector(state => state.particleReducer.particles);
 
 	const draw = (context, x, y, color, s) => {
 		context.fillStyle = color;
 		context.fillRect(x, y, s, s);
-		// console.log('1')
 	}
 
 	const particle = (x, y, color) => {
@@ -23,7 +22,6 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 		let group = [];
 		for (let i = 0; i < n; i++) {
 			group.push(particle(random(), random(), color));
-			// setParticles(prevState => [...prevState, group[i]]);
 			particles.push(group[i]);
 		}
 		return group;
@@ -65,7 +63,7 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		const context = canvas.getContext('2d');
-		let particles = [];
+		let particlesArr = [];
 		context.clearRect(0, 0, 500, 500);
 		console.log('canvas renderer');
 
@@ -76,9 +74,9 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 		let parts2;
 		let parts3;
 
-		if (particlesRules[0].on) parts1 = create(particles, particlesRules[0].amount, particlesRules[0].color);
-		if (particlesRules[1].on) parts2 = create(particles, particlesRules[1].amount, particlesRules[1].color);
-		if (particlesRules[2].on) parts3 = create(particles, particlesRules[2].amount, particlesRules[2].color);
+		if (particlesRules[0].on) parts1 = create(particlesArr, particlesRules[0].amount, particlesRules[0].color);
+		if (particlesRules[1].on) parts2 = create(particlesArr, particlesRules[1].amount, particlesRules[1].color);
+		if (particlesRules[2].on) parts3 = create(particlesArr, particlesRules[2].amount, particlesRules[2].color);
 
 		// const yellow = create(10, "yellow");
 		// const red = create(particles, 1000, "red");
@@ -110,8 +108,8 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 			// rule(yellow, yellow, 0.01)
 
 			if (canvasCleaning) context.clearRect(0, 0, 500, 500);
-			for (let i = 0; i<particles.length; i++){
-				draw(context, particles[i].x, particles[i].y, particles[i].color, particleSize);
+			for (let i = 0; i<particlesArr.length; i++){
+				draw(context, particlesArr[i].x, particlesArr[i].y, particlesArr[i].color, particleSize);
 			}
 			animatedID = window.requestAnimationFrame(renderer);
 		}

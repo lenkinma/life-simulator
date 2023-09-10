@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import "react-color-palette/css";
 import Particle from "./particle";
+import {useSelector} from "react-redux";
 
-function ParticleSettings({particlesRules, setParticlesRules}) {
+function ParticleSettings() {
+	const particles = useSelector(state => state.particleReducer.particles);
 
 	return (
 		<div className='particle-settings__wrapper'>
-			{particlesRules.sort(function(a, b) {
-				return a.id - b.id;
-			}).map(e => <Particle particlesRules={particlesRules} setParticlesRules={setParticlesRules} particle={e}/>)}
-
+			{particles.map(elem => <Particle particle={elem}/>)}
 		</div>
 	);
 }
