@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from "./slider";
 import '../styles/App.scss';
+import {useSelector} from "react-redux";
 function MainSettings({setCount,
 	                      particleSize, setParticleSize,
 	                      particleSpeed, setParticleSpeed,
@@ -8,6 +9,8 @@ function MainSettings({setCount,
 												canvasCleaning, setCanvasCleaning,
 												borders, setBorders,
 }) {
+	const particles = useSelector(state => state.particleReducer.particles);
+
 	return (
 		<div className='mainSettings__wrapper'>
 			<button className='mainSettings__main-btn' onClick={() => setCount(prev => prev + 1)}>Сгенерировать</button>

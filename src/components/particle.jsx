@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Accordion from "./accordion";
 import Slider from "./slider";
 import Modal from "./modal";
 import {ColorPicker, useColor} from "react-color-palette";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changeAmount, changeColor, changeInteraction, changeStatus} from "../store/particleSlice";
 
 function Particle({particle}) {
 	const [color, setColor] = useColor(particle.color);
 	const [colorPickerIsOpen, setColorPickerIsOpen] = useState(false);
 	const dispatch = useDispatch();
-
-	// useEffect(() => {
-	// 	dispatch(changeColor({id: particle.id, color: particle.color}));
-	// }, [colorPickerIsOpen]);
-
+	const particles = useSelector(state => state.particleReducer.particles);
 
 	return (
 		<div>
@@ -42,21 +38,15 @@ function Particle({particle}) {
 							<Slider min={0} max={1000} setCurrentValue={(value) => {dispatch(changeAmount({id: particle.id, amount: value}))}}
 							        currentValue={particle.amount}/>
 						</div>
-						<div>
-							<span>Притяжение к <div className='particle__color-icon-small' style={{backgroundColor: particle.color}}></div> {particle.with1}</span>
-							<Slider min={-1000} max={1000} setCurrentValue={(value) => {dispatch(changeInteraction({id: particle.id, with1: value}))}}
-							        currentValue={particle.with1}/>
-						</div>
-						{/*<div>*/}
-						{/*	<span>Притяжение к <div className='particle__color-icon-small' style={{backgroundColor: particlesRules[1].color}}></div> {particlesRules[0].with2}</span>*/}
-						{/*	<Slider min={-1000} max={1000} setCurrentValue={(value) => {setParticlesRules(prev => [{...prev[0], with2: value}, prev[1], prev[2]])}}*/}
-						{/*	        currentValue={particlesRules[0].with2}/>*/}
-						{/*</div>*/}
-						{/*<div>*/}
-						{/*	<span>Притяжение к <div className='particle__color-icon-small' style={{backgroundColor: particlesRules[2].color}}></div> {particlesRules[0].with3}</span>*/}
-						{/*	<Slider min={-1000} max={1000} setCurrentValue={(value) => {setParticlesRules(prev => [{...prev[0], with3: value}, prev[1], prev[2]])}}*/}
-						{/*	        currentValue={particlesRules[0].with3}/>*/}
-						{/*</div>*/}
+						{particle.interaction.map(inter =>
+							<div>
+								<span>Притяжение к <div
+									className='particle__color-icon-small'
+									style={{backgroundColor: particles.find(e => e.id === inter.id).color}}></div>  : {inter.amount}</span>
+											<Slider min={-1000} max={1000} setCurrentValue={(value) => {dispatch(changeInteraction({id: particle.id, interactionId: inter.id, amount: value}))}}
+											        currentValue={inter.amount}/>
+							</div>
+						)}
 					</Accordion>
 
 				</div>

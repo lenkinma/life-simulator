@@ -4,9 +4,9 @@ const particleSlice = createSlice({
 	name: 'particles',
 	initialState: {
 		particles: [
-			{id: 0, on: true, color: 'red', amount: 1000, with1: 100, with2: 100, with3: 100},
-			{id: 1, on: true, color: 'blue', amount: 1000, with1: 100, with2: 100, with3: 100},
-			{id: 2, on: false, color: 'green', amount: 1000, with1: 100, with2: 100, with3: 100},
+			{id: 0, on: true, color: 'red', amount: 1000, interaction: [{id: 0, amount: 100}, {id: 1, amount: 100}, {id: 2, amount: 100}]},
+			{id: 1, on: true, color: 'blue', amount: 1000, interaction: [{id: 0, amount: 100}, {id: 1, amount: 100}, {id: 2, amount: 100}]},
+			{id: 2, on: false, color: 'green', amount: 1000, interaction: [{id: 0, amount: 100}, {id: 1, amount: 100}, {id: 2, amount: 100}]},
 		],
 	},
 	reducers: {
@@ -24,7 +24,8 @@ const particleSlice = createSlice({
 		},
 		changeInteraction(state, action) {
 			let particle = state.particles.find(e => e.id === action.payload.id);
-			particle.with1 = action.payload.with1;
+			let interaction = particle.interaction.find(e => e.id === action.payload.interactionId)
+			interaction.amount = action.payload.amount;
 		},
 	}
 })
