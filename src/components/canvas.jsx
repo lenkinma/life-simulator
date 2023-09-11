@@ -69,16 +69,16 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 		let animatedID;
 
 		let parts = [];
+
 		particles.forEach(elem => {
 			if (elem.on) parts.push(create(particlesArr, elem.amount, elem.color))
 			else parts.push(create(particlesArr, 0, elem.color))
 		})
-
 		const renderer = () => {
 
 			particles.forEach((elem1, index1) => {
 				particles.forEach((elem2, index2) => {
-					rule(parts[index1], parts[index2], (elem1.interaction.find(e => e.id === index2).amount)/1000)
+					rule(parts[index1], parts[index2], (elem1.interaction.find(e => e.id === elem2.id).amount)/1000)
 				})
 			})
 

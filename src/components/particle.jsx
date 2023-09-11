@@ -4,7 +4,8 @@ import Slider from "./slider";
 import Modal from "./modal";
 import {ColorPicker, useColor} from "react-color-palette";
 import {useDispatch, useSelector} from "react-redux";
-import {changeAmount, changeColor, changeInteraction, changeStatus} from "../store/particleSlice";
+import {changeAmount, changeColor, changeInteraction, changeStatus, deleteParticle} from "../store/particleSlice";
+import {AiOutlineClose} from "react-icons/ai";
 
 function Particle({particle}) {
 	const [color, setColor] = useColor(particle.color);
@@ -15,13 +16,14 @@ function Particle({particle}) {
 	return (
 		<div>
 			<div className='particle__wrapper'>
-				<div>
+				<div className='particle__name-block'>
 					<input type="checkbox" className="checkbox" id={`particle${particle.id}`} name="particles1"
 					       value={particle.on}
 					       onChange={() => dispatch(changeStatus({id: particle.id}))}
 						     checked={particle.on}
 					/>
 					<label htmlFor={`particle${particle.id}`}>Частицы {particle.id + 1}</label>
+					<AiOutlineClose className='particle__delete-btn' onClick={() => {dispatch(deleteParticle({id: particle.id})); }}/>
 				</div>
 				<div className='particle__main-settings-wrapper'>
 					<div className='particle__color-random-block'>
@@ -32,7 +34,7 @@ function Particle({particle}) {
 						<button className='particle__settings-btn'>Рандом</button>
 					</div>
 
-					<Accordion>
+					<Accordion particles={particles}>
 						<div>
 							<span>Количество частиц:  {particle.amount}</span>
 							<Slider min={0} max={1000} setCurrentValue={(value) => {dispatch(changeAmount({id: particle.id, amount: value}))}}

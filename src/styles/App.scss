@@ -95,8 +95,21 @@ canvas {
     gap: 15px;
     padding: 15px;
 }
-
-
+.particle__name-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.particle__delete-btn {
+    width: 25px;
+    height: 25px;
+    color: $dark;
+    &:hover {
+        cursor: pointer;
+        color: $accent;
+    }
+}
 .particle__main-settings-wrapper {
     margin-top: 5px;
 }
@@ -135,6 +148,12 @@ canvas {
     padding: 14px;
     width: 100%;
     margin-left: 5px;
+}
+.particle__settings-create-btn {
+    @extend %main-btn;
+    font-size: 16px;
+    padding: 14px;
+    width: 100%;
 }
 
 .accordion {

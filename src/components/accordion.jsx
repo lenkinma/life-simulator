@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {BsChevronRight} from "react-icons/bs";
 
-function Accordion({children}) {
+function Accordion({children, particles}) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [heightEl, setHeightEl] = useState();
 
@@ -9,7 +9,7 @@ function Accordion({children}) {
 
 	useEffect(() => {
 		setHeightEl(`${refHeight.current.scrollHeight}px`)
-	}, []);
+	}, [particles]);
 
 	return (
 		<div>
