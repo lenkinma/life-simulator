@@ -4,7 +4,14 @@ import Slider from "./slider";
 import Modal from "./modal";
 import {ColorPicker, useColor} from "react-color-palette";
 import {useDispatch, useSelector} from "react-redux";
-import {changeAmount, changeColor, changeInteraction, changeStatus, deleteParticle} from "../store/particleSlice";
+import {
+	changeAmount,
+	changeColor,
+	changeInteraction,
+	changeStatus,
+	deleteParticle,
+	randomChange
+} from "../store/particleSlice";
 import {AiOutlineClose} from "react-icons/ai";
 
 function Particle({particle}) {
@@ -31,7 +38,7 @@ function Particle({particle}) {
 						     className='particle__color-icon'
 						     style={{backgroundColor: particle.color}}>
 						</div>
-						<button className='particle__settings-btn'>Рандом</button>
+						<button className='particle__settings-btn' onClick={() => dispatch(randomChange({id: particle.id}))}>Рандом</button>
 					</div>
 
 					<Accordion particles={particles}>

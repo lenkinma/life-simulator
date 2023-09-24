@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useSelector} from "react-redux";
 
-function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning, borders}) {
+function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasCleaning, borders, canvasWidth, gameIsOn}) {
 	const canvasRef = useRef(null);
 	const particles = useSelector(state => state.particleReducer.particles);
 
@@ -15,7 +15,7 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 	}
 
 	const random = () => {
-		return Math.random()*400+50;
+		return Math.random() * (canvasWidth * 0.8) + canvasWidth * 0.1;
 	}
 
 	const create = (particlesArr, n, color) => {
@@ -43,14 +43,14 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 					fy += (F * dy)
 				}
 			}
-			if (a.x <= 0 || a.x >= 500) {a.vx *= -1;}
-			if (a.y <= 0 || a.y >= 500) {a.vy *= -1;}
+			if (a.x <= 0 || a.x >= canvasWidth) {a.vx *= -1;}
+			if (a.y <= 0 || a.y >= canvasWidth) {a.vy *= -1;}
 
 			if (borders) {
 				if (a.x < 0) {a.x = 0}
-				if (a.x > 500) {a.x = 497;}
+				if (a.x > canvasWidth) {a.x = canvasWidth - 3;}
 				if (a.y < 0) {a.y = 0}
-				if (a.y > 500) {a.y = 497;}
+				if (a.y > canvasWidth) {a.y = canvasWidth - 3;}
 			}
 
 			a.vx = (a.vx + fx)*(particleSpeed/10);
@@ -64,7 +64,7 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 		const canvas = canvasRef.current;
 		const context = canvas.getContext('2d');
 		let particlesArr = [];
-		context.clearRect(0, 0, 500, 500);
+		context.clearRect(0, 0, canvasWidth, canvasWidth);
 
 		let animatedID;
 
@@ -75,14 +75,13 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 			else parts.push(create(particlesArr, 0, elem.color))
 		})
 		const renderer = () => {
-
 			particles.forEach((elem1, index1) => {
 				particles.forEach((elem2, index2) => {
 					rule(parts[index1], parts[index2], (elem1.interaction.find(e => e.id === elem2.id).amount)/1000)
 				})
 			})
 
-			if (canvasCleaning) context.clearRect(0, 0, 500, 500);
+			if (canvasCleaning) context.clearRect(0, 0, canvasWidth, canvasWidth);
 			for (let i = 0; i<particlesArr.length; i++){
 				draw(context, particlesArr[i].x, particlesArr[i].y, particlesArr[i].color, particleSize);
 			}
@@ -94,8 +93,12 @@ function Canvas({count, particleSize, particleSpeed, forceOfGravity, canvasClean
 	}, [count]);
 
 	return (
-		<div>
-			<canvas ref={canvasRef} width={500} height={500}/>
+		<div className='canvas__wrapper' style={{width: canvasWidth + 'px', height: canvasWidth + 'px'}}>
+			<canvas ref={canvasRef} width={canvasWidth} height={canvasWidth}>
+			</canvas>
+			<div className={!gameIsOn ? 'canvas__text-wrapper' : 'canvas__text-hidden'}>
+				<span className='canvas__text'>Нажми <br/>«Сгенерировать»</span>
+			</div>
 		</div>
 	);
 }
