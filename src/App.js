@@ -1,12 +1,9 @@
 import './styles/App.scss';
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Canvas from "./components/canvas";
 import MainSettings from "./components/mainSettings";
-import Slider from "./components/slider";
 import ParticleSettings from "./components/particleSettings";
 import Media from "react-media";
-import {useDispatch} from "react-redux";
-import {createParticle} from "./store/particleSlice";
 import Modal from "./components/modal";
 
 function App() {
@@ -14,7 +11,7 @@ function App() {
   const [gameIsOn, setGameIsOn] = useState(false);
   const [particleSize, setParticleSize] = useState(3);
   const [particleSpeed, setParticleSpeed] = useState(5);
-  const [forceOfGravity, setForceOfGravity] = useState(4);
+  const [forceOfGravity, setForceOfGravity] = useState(3);
   const [canvasCleaning, setCanvasCleaning] = useState(true);
   const [borders, setBorders] = useState(false);
   const [startModalisOpen, setStartModalisOpen] = useState(true);
@@ -26,7 +23,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className='app__wrapper'>
       {startModalisOpen &&
         <Modal setModalIsOpen={setStartModalisOpen}>
           <div className='start-modal__wrapper'>
@@ -68,7 +65,7 @@ function App() {
         />
         <ParticleSettings />
       </div>
-    </>
+    </div>
   );
 }
 

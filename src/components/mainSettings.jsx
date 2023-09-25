@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from "./slider";
 import '../styles/App.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {createParticle} from "../store/particleSlice";
+import {createParticle, randomChange} from "../store/particleSlice";
 function MainSettings({setCount,
 	                      particleSize, setParticleSize,
 	                      particleSpeed, setParticleSpeed,
@@ -12,10 +12,6 @@ function MainSettings({setCount,
 }) {
 	const particles = useSelector(state => state.particleReducer.particles);
 	const dispatch = useDispatch();
-
-	function getRndmNumb(a, b) {
-		return Math.floor(Math.random() * (b - a + 1)) + a;
-	}
 
 	const generateGame = () => {
 		setCount(prev => prev + 1);
@@ -28,9 +24,7 @@ function MainSettings({setCount,
 	}
 
 	const randomGeneration = () => {
-		setParticleSpeed(getRndmNumb(1, 9));
-		setParticleSize(getRndmNumb(1, 9));
-		setForceOfGravity(getRndmNumb(1, 9));
+		particles.forEach(elem => dispatch(randomChange({id: elem.id})));
 	}
 	return (
 		<div className='mainSettings__wrapper'>
@@ -45,7 +39,7 @@ function MainSettings({setCount,
 				<Slider min={1} max={9} setCurrentValue={setParticleSpeed} currentValue={particleSpeed}/>
 			</div>
 			<div className='slider-wrapper'>
-				<span>Сила притяжения: {forceOfGravity}</span>
+				<span>Масштаб холста: {forceOfGravity}</span>
 				<Slider min={1} max={9} setCurrentValue={setForceOfGravity} currentValue={forceOfGravity}/>
 			</div>
 			<div>
