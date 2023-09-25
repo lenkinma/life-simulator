@@ -25,6 +25,7 @@ function MainSettings({setCount,
 
 	const randomGeneration = () => {
 		particles.forEach(elem => dispatch(randomChange({id: elem.id})));
+		generateGame();
 	}
 	return (
 		<div className='mainSettings__wrapper'>
