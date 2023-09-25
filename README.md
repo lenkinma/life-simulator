@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+<p><b>Read in another language: <a href="/README.ru.md">Русский<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/180px-Flag_of_Russia.svg.png" width="20"/></a>, <a href="/README.md">English<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/180px-Flag_of_the_United_Kingdom_%283-5%29.svg.png" width="20"/></a>.</b></p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# life-simulator
 
-In the project directory, you can run:
+*(To be fair, it's a particle interaction simulator, but life simulator sounds more clickable)*
 
-### `npm start`
+#### Libraries used:
+* react - for easy development of the user interface
+* reduxjs/toolkit - for state management
+* node-sass - for working with sass/scss
+* react-color-palette - for a palette with the ability to select the particle color
+* react-custom-scrollbars - for the scrollbar to work properly
+* react-icons - just handy svg icons
+* react-media - media queries for site customization
+* react-slider - slider for setting values
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*In the simulation you can generate and fine tune the interaction between each selected particle, but since a normal user would be too lazy to do all this, I added buttons that do the random customization for the user*
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots:
+<details> 
+	<summary><h4>1. (Example of generation #1)</h4></summary>
+	<img src="https://sun9-51.userapi.com/impg/G7kv5JdkfwkXdE0_SjTxrEzToyKqNlqUH5MWlw/2XvRzaBt8BI.jpg?size=1645x853&quality=96&sign=ad2f209ff08a01fd8caabafb96a3de92&type=album" width="500"/>
+</details>
+<details> 
+	<summary><h4>2. (Example of generation #2)</h4></summary>
+	<img src="https://sun9-3.userapi.com/impg/jC_zZTkWrmW6x2yc_grx6OXBJcVTuLvlQW0gvg/JswX6VgUP-Q.jpg?size=1654x870&quality=96&sign=91377eb56c988287679baf59d3249bdd&type=album" width="500"/>
+</details>
+<details> 
+	<summary><h4>3. (Example of generation #3)</h4></summary>
+	<img src="https://sun9-20.userapi.com/impg/q7Cfhh5SWj3m6h2gYhjELGr-AD0KKp7BBCAnAw/kxtiRE-FBFs.jpg?size=1669x858&quality=96&sign=f7e5a1c59a8d8bae0865e3e0c4017a6f&type=album" width="500"/>
+</details>
+<details> 
+	<summary><h4>5. (Disabling "canvas cleanup")</h4></summary>
+	<img src="https://sun9-9.userapi.com/impg/asGDXZo4zDMHDJPywaU5pvuzNJTInw39_9fziA/_FgXDGaPwkw.jpg?size=1660x865&quality=96&sign=0ce254f930484d8955b3e273d23cd0ff&type=album" width="500"/>
+</details>
+<details> 
+	<summary><h4>6. (Color choice)</h4></summary>
+	<img src="https://sun9-58.userapi.com/impg/rSuTU_yWiCCXgSodbeaOAx_rZdRvuT0uh2vmKQ/SwoylSUBm4Q.jpg?size=1659x862&quality=96&sign=92295148587d2617d320d769ef9b85ff&type=album" width="500"/>
+</details>
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Start-up instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*You can view the finished version of the site by clicking on the link:*
+https://lenkinma.github.io/life-simulator/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### If you want to run the site on your computer, follow these instructions:
+1. Make sure you have an LTS version of Node.js installed on your computer.
+   [Download and install](https://nodejs.org/) it if necessary.
+2. Clone this repository.
+3. Using the terminal or IDE, navigate to the project folder.
+4. Install the project's base dependencies with the `npm install` command.
+5. Start the application by executing the `npm start` command.
+6. Done! Go to the following address in your browser: [http://localhost:3000](http://localhost:3000).
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Any questions? My contacts:
+<a href="https://vk.com/lenkinma">
+	<img src="https://img.shields.io/badge/-VK-090909?style=for-the-badge&logo=VK&logoColor=0077FF" alt="Vk"/>
+</a>
+<a href="https://t.me/lenkinmax">
+	<img src="https://img.shields.io/badge/-Telegram-090909?style=for-the-badge&logo=Telegram&logoColor=26A5E4" alt="Telegram"/>
+</a>
