@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/life-simulator/static/css/main.a38a671c.css",
-    "main.js": "/life-simulator/static/js/main.464f3196.js",
+    "main.js": "/life-simulator/static/js/main.4cbda015.js",
     "index.html": "/life-simulator/index.html",
     "main.a38a671c.css.map": "/life-simulator/static/css/main.a38a671c.css.map",
-    "main.464f3196.js.map": "/life-simulator/static/js/main.464f3196.js.map"
+    "main.4cbda015.js.map": "/life-simulator/static/js/main.4cbda015.js.map"
   },
   "entrypoints": [
     "static/css/main.a38a671c.css",
-    "static/js/main.464f3196.js"
+    "static/js/main.4cbda015.js"
   ]
 }
